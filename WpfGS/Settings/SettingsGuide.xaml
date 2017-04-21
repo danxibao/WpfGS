@@ -1,0 +1,52 @@
+﻿<Window x:Class="WpfGS.SettingsGuide"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfGS" 
+        Title="SettingsGuide" Height="430" Width="450">
+    <Grid>
+        <TabControl Background="{x:Null}" Name="tab"
+                        >
+
+            <TabItem Header="文件路径">
+
+                <Grid>
+
+                    <local:FilePathEdit HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
+                                        x:Name="UCf"/>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="定义废物桶">
+                <Grid>
+                    <local:Container HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
+                                      x:Name="UCc"/>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="定义效率刻度标准源">
+                <Grid>
+                    <local:CalibrationSource HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
+                                              x:Name="UCcs"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="定义透射校核标准源">
+                <Grid>
+                    <local:TransmissionSource HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
+                                               x:Name="UCts"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="探测器定义">
+                <Grid>
+                    <local:Detector HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
+                                     x:Name="UCd"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="确定" 
+                HorizontalAlignment="Left" Margin="109,347,0,0" VerticalAlignment="Top" Width="75" Click="ButtonOK_Click"/>
+        <Button Content="全部保存" 
+                HorizontalAlignment="Left" Margin="189,347,0,0" VerticalAlignment="Top" Width="75" Click="ButtonSaveAll_Click"/>
+        <Button Content="取消" HorizontalAlignment="Left" Margin="341,347,0,0" VerticalAlignment="Top" Width="75" Click="ButtonCancel_Click"/>
+    </Grid>
+</Window>

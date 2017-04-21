@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="WpfGS.CalibrationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfGS"
+             xmlns:tk="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:chartingprimitives="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="540" d:DesignWidth="780">
+    <UserControl.Resources>
+        <local:RegImageConverter x:Key="RegImageConverter"/>
+    </UserControl.Resources>
+    <StackPanel>
+        <TextBlock Text="  效率刻度" DockPanel.Dock="Top" FontSize="36"/>
+        <Grid Height="500">
+        <TreeView Grid.Column="0" Name="treeview"  
+                  MouseDoubleClick="treeOpen_Click"
+                    HorizontalAlignment="Left"  VerticalAlignment="Top" Height="436" Width="201" Margin="10,10,0,0">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type local:Node}"  ItemsSource="{Binding Nodes}">
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                        <Image Source="{Binding Converter={StaticResource RegImageConverter}}"  Margin="0, 0, 5, 0"/>
+                        <TextBlock Text="{Binding Name}" ToolTip="{Binding path}" Tag="{Binding}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+            <TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="打开" Name="treeOpen" Click="treeOpen_Click"/>
+                    <MenuItem Header="编辑" Name="treeNew" Click="treeNew_Click"/>
+                    <!--MenuItem Header="删除" Name="treeDelete" Click="treeDelete_Click"/-->
+                    <!--MenuItem Header="重命名" Name="treeRename" Click="treeRename_Click"/-->
+                </ContextMenu>
+            </TreeView.ContextMenu>
+        </TreeView>
+
+        <DataGrid  Name="datagrid" ItemsSource="{Binding ECPara}" SelectionChanged="datagrid_Selected" 
+                   CanUserAddRows="False" CanUserDeleteRows="False"
+            HorizontalAlignment="Left" Margin="216,276,0,0" VerticalAlignment="Top" Height="170" Width="180"/>
+
+        <DataGrid  x:Name="datagrid2" ItemsSource="{Binding evsr}" 
+                   CanUserAddRows="False" CanUserDeleteRows="False"
+        	HorizontalAlignment="Left" Margin="401,276,0,0" VerticalAlignment="Top" Height="170" Width="180"/>
+
+        <tk:Chart  Name="lineChart" VerticalAlignment="Top" Margin="216,10,10,0" Height="261" SnapsToDevicePixels="True" 
+                   >
+            <tk:LineSeries  DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True"
+                                           />
+            <tk:Chart.Template>
+                <ControlTemplate TargetType="{x:Type tk:Chart}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding Background}" BorderThickness="0" Padding="0" Margin="0,0,8,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <!--datavis:Title Content="{TemplateBinding Title}" Style="{TemplateBinding TitleStyle}" /-->
+                            <chartingprimitives:EdgePanel Name="ChartArea" Style="{TemplateBinding ChartAreaStyle}" Grid.Row="1" Margin="0,0,0,0">
+                                <Grid Panel.ZIndex="-1" Style="{TemplateBinding PlotAreaStyle}" />
+                                <Border Panel.ZIndex="10" BorderBrush="#FF919191" BorderThickness="1" />
+                            </chartingprimitives:EdgePanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </tk:Chart.Template>
+        </tk:Chart>
+        
+        <Button Content="删除行" HorizontalAlignment="Left" Margin="269,451,0,0" VerticalAlignment="Top" Width="61"
+                Click="ButtonDelete_Click"/>
+        <Button Content="添加行" HorizontalAlignment="Left" Margin="335,451,0,0" VerticalAlignment="Top" Width="61"
+                Click="ButtonAdd_Click"/>
+        <Button Content="删除行" HorizontalAlignment="Left" Margin="454,451,0,0" VerticalAlignment="Top" Width="61"
+        	Click="ButtonDelete2_Click"/>
+        <Button Content="添加行" HorizontalAlignment="Left" Margin="520,451,0,0" VerticalAlignment="Top" Width="61"
+        	Click="ButtonAdd2_Click"/>
+            
+            <Button Content="实验测定" HorizontalAlignment="Left" Margin="626,280,0,0" VerticalAlignment="Top" Width="61" 
+                Click="ButtonTest_Click"/>
+            <Button Content="来自文件" HorizontalAlignment="Left" Margin="626,304,0,0" VerticalAlignment="Top" Width="61"
+                Click="AddFile_Click"/>
+            <Button Content="保存文件" HorizontalAlignment="Left" Margin="626,427,0,0" VerticalAlignment="Top" Width="61"
+                Click="SaveFile_Click"/>
+        </Grid>
+    </StackPanel>
+</UserControl>
