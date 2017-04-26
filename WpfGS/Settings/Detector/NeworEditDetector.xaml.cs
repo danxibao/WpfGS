@@ -43,6 +43,8 @@ namespace WpfGS
 
                 Description.Text = dp.Description;
                 Information.Text = dp.Information;
+                DetectorIP.Text = dp.DetectorIP;
+                MotorIP.Text = dp.MotorIP;
 
             }
             
@@ -54,6 +56,8 @@ namespace WpfGS
         {
             bool isOK=true;
             DetectorPara tmp = new DetectorPara();
+
+            if(Opt)
             foreach (DetectorPara exist in Settings.listdp)
             {
                 if (exist.Description == Description.Text)
@@ -68,6 +72,8 @@ namespace WpfGS
             }
             if ("" == (tmp.Description = Description.Text)) isOK = false;
             if ("" == (tmp.Information = Information.Text)) isOK = false;
+            if ("" == (tmp.DetectorIP = DetectorIP.Text)) isOK = false;
+            if ("" == (tmp.MotorIP = MotorIP.Text)) isOK = false;
 
             if (isOK)
             {

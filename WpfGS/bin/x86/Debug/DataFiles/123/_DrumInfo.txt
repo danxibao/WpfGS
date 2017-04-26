@@ -1,0 +1,15 @@
+folderName:123
+ID:456
+Description:789
+Time:2017/4/24 0:00:00
+Type:SGS
+Container:drum 55 Gallan
+Detector:Detector001
+CalibrationFilePath:
+IsTransmission:1
+TransmissionFilePath:
+ScanType:1
+StartPos:5
+Step:10
+StopPos:85
+END

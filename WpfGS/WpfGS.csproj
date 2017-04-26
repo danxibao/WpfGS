@@ -101,6 +101,7 @@
     <Compile Include="Calibration\CalibrationView.xaml.cs">
       <DependentUpon>CalibrationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Detection\GS.cs" />
     <Compile Include="Images\RegImageConverter.cs" />
     <Compile Include="Settings\SettingsGuide.xaml.cs">
       <DependentUpon>SettingsGuide.xaml</DependentUpon>
@@ -252,9 +253,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\示意图.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

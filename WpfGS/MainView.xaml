@@ -180,21 +180,26 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
-                        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" 
+                        <TextBlock HorizontalAlignment="Left" Margin="10,11,0,0" TextWrapping="Wrap" 
                                    Text="探测器地址" VerticalAlignment="Top"/>
-                        <TextBox x:Name="DetectorIP" 
-                        	HorizontalAlignment="Left" Height="23" Margin="75,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" Text="192.168.31.100"/>
-                        <Button Content="连接" HorizontalAlignment="Left" Margin="180,11,0,0" VerticalAlignment="Top" Width="75"
+                        <TextBox x:Name="DetectorIP"  IsReadOnly="true"
+                        	HorizontalAlignment="Left" Height="23" Margin="95,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" />
+                        <Ellipse Name="Circle1"
+                            Width="15" Height="15" HorizontalAlignment="Left"  Margin="75,11,0,0"  Stroke="Black" VerticalAlignment="Top" Fill="Red"/>
+
+                        <TextBlock HorizontalAlignment="Left" Margin="200,11,0,0" TextWrapping="Wrap" 
+                                   Text="电机地址" VerticalAlignment="Top"/>
+                        <TextBox x:Name="MotorIP" IsReadOnly="True"
+                        	HorizontalAlignment="Left" Height="23" Margin="273,11,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+                        <Ellipse Name="Circle2"
+                            Width="15" Height="15"
+                            Fill="Red" HorizontalAlignment="Left"  Margin="253,12,0,0"  Stroke="Black" VerticalAlignment="Top"/>
+
+                        <Button Content="连接" HorizontalAlignment="Left" Margin="378,12,0,0" VerticalAlignment="Top" Width="75" 
+                                Click="ButtonConnect_Click"
                                 />
 
-                        <TextBlock HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" 
-                                   Text="电机地址" VerticalAlignment="Top"/>
-                        <TextBox x:Name="MotorIP" 
-                        	HorizontalAlignment="Left" Height="23" Margin="75,38,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" Text="192.168.31.101"/>
-                        <Button Content="连接" HorizontalAlignment="Left" Margin="180,39,0,0" VerticalAlignment="Top" Width="75"
-                                />
-                        
-                        
+
                         <Image Source="/Images/示意图.png"  Grid.Row="1"/>
 
 
@@ -206,7 +211,7 @@
                             HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="25" Width="500" />
                         <Button Content="开始测量" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Width="200" FontSize="18" Height="32" 
                                 Click="ButtonStart_Click"/>
-                        
+
                     </Grid>
                 </TabItem>
                 <TabItem  Header="重建结果">

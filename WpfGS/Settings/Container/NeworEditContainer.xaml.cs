@@ -58,6 +58,8 @@ namespace WpfGS
         {
             bool isOK=true;
             ContainerPara tmp = new ContainerPara();
+
+            if (Opt)
             foreach (ContainerPara exist in Settings.listcp)
             {
                 if (exist.Description == Description.Text)

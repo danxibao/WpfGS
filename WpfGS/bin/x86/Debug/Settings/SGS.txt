@@ -1,0 +1,2 @@
+#RotationMode,Spd,Pos #Time,Mode
+3 10 50 10 1

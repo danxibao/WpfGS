@@ -54,3 +54,4 @@ E:\TGS\TGS软件工程\WpfGS\WpfGS\obj\x86\Debug\WpfGS.csproj.GenerateResource.C
 E:\TGS\TGS软件工程\WpfGS\WpfGS\obj\x86\Debug\WpfGS.exe
 E:\TGS\TGS软件工程\WpfGS\WpfGS\obj\x86\Debug\WpfGS.pdb
 E:\TGS\TGS软件工程\WpfGS\WpfGS\obj\x86\Debug\WpfGS.csprojResolveAssemblyReference.cache
+E:\TGS\TGS\WpfGS\WpfGS\bin\x86\Debug\WpfGS.exe.config

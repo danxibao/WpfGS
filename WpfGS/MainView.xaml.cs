@@ -16,10 +16,11 @@ using System.IO;
 using System.Windows.Forms;
 
 using System.Windows.Media.Media3D;
-using System.Net.Sockets;
+
 using System.Runtime.InteropServices;
 
 using System.Net;
+using System.Net.Sockets;
 using System.Threading;
 
 using Modbus.Data;
@@ -104,11 +105,10 @@ namespace WpfGS
                     switch(tab.SelectedIndex)
                     {
                         case 0:
+                        case 1:
                             ItemLoad(n.fpath + "\\" + n.Name + "\\_DrumInfo.txt");
                             break;
-                        case 1:
 
-                            break;
                         case 2:
                             ReportLoad(n.fpath + "\\" + n.Name + "\\#DetectionReport.txt");
                             break;
@@ -121,6 +121,147 @@ namespace WpfGS
             
 
         }
+        void ItemLoad(string path)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string line;
+                    line = sr.ReadLine();
+                    folderName.Text = GetStr(line);
+
+                    line = sr.ReadLine();
+                    string data = GetStr(line);
+                    ID.Text = data;
+
+                    line = sr.ReadLine();
+                    data = GetStr(line);
+                    Description.Text = data;
+
+                    line = sr.ReadLine();
+                    data = GetStr(line);
+                    DateTime dt;
+                    DateTime.TryParse(data, out dt);
+                    date.SelectedDate = dt;
+
+                    line = sr.ReadLine();
+                    data = GetStr(line);
+                    if (data == "SGS")
+                    {
+                        type.SelectedIndex = 0;
+                    }
+                    else if (data == "TSGS")
+                    {
+                        type.SelectedIndex = 1;
+                    }
+                    else if (data == "TGS")
+                    {
+                        type.SelectedIndex = 2;
+                    }
+                    else
+                    {
+                        throw new Exception("读取项目文件，探测模式错误");
+                    }
+
+                    line = sr.ReadLine();
+                    data = GetStr(line);
+                    int index = 0;
+                    foreach (ContainerPara cp in drum.Items)
+                    {
+                        if (cp.Description == data)
+                        {
+                            break;
+                        }
+                        index++;
+                    }
+                    drum.SelectedIndex = index;
+
+                    line = sr.ReadLine();
+                    data = data = GetStr(line);
+                    index = 0;
+                    foreach (DetectorPara dp in detector.Items)
+                    {
+                        if (dp.Description == data)
+                        {
+                            DetectorIP.Text = dp.DetectorIP;
+                            MotorIP.Text = dp.MotorIP;
+                            break;
+                        }
+                        index++;
+                    }
+                    detector.SelectedIndex = index;
+
+                    line = sr.ReadLine();
+                    data = data = GetStr(line);
+                    calibrationFilePath = data;
+                    calibrationFile.Text = calibrationFilePath.Substring(calibrationFilePath.LastIndexOf("\\") + 1);
+
+                    line = sr.ReadLine();
+                    data = data = GetStr(line);
+                    int TransmissionMeasure;
+                    int.TryParse(data, out TransmissionMeasure);
+                    if (TransmissionMeasure == 1)
+                        isTM.IsChecked = true;
+                    else
+                        isTM.IsChecked = false;
+
+                    line = sr.ReadLine();
+                    data = data = GetStr(line);
+                    transmissionFilePath = data;
+                    transmissionFile.Text = transmissionFilePath.Substring(transmissionFilePath.LastIndexOf("\\") + 1);
+
+                    line = sr.ReadLine();
+                    data = data = GetStr(line);
+                    int ScanType;
+                    int.TryParse(data, out ScanType);
+
+                    if (ScanType == 1)
+                    {
+                        r1.IsChecked = true;
+
+                        line = sr.ReadLine();
+                        data = data = GetStr(line);
+                        startpos.Text = data;
+
+                        line = sr.ReadLine();
+                        data = data = GetStr(line);
+                        step.Text = data;
+
+                        line = sr.ReadLine();
+                        data = data = GetStr(line);
+                        stoppos.Text = data;
+                    }
+                    else if (ScanType == 2)
+                    {
+                        r2.IsChecked = true;
+                        line = sr.ReadLine();
+                        data = data = GetStr(line);
+                        start.Text = data;
+
+                        line = sr.ReadLine();
+                        data = data = GetStr(line);
+                        distance.Text = data;
+                    }
+
+                    else if (ScanType == 3)
+                    {
+                        r3.IsChecked = true;
+                        line = sr.ReadLine();
+                        data = data = GetStr(line);
+                        pos.Text = data;
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex) 
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
         private void ReportLoad(string path)
         {
             try
@@ -132,12 +273,15 @@ namespace WpfGS
 
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
         private void treeNew_Click(object sender, RoutedEventArgs e)
         {
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.InitialDirectory = Settings.DataPath;
+                if (Settings.DataPath[0] == '.') sfd.InitialDirectory = Environment.CurrentDirectory + Settings.DataPath.Substring(1);
+                else sfd.InitialDirectory = Settings.DataPath;
                 sfd.Title = "新建数据文件";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -156,7 +300,8 @@ namespace WpfGS
         private void ButtonCalibrationFileSet_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.InitialDirectory = Settings.CalibrationPath;
+            ofd.InitialDirectory = Environment.CurrentDirectory+Settings.CalibrationPath.Substring(1);
+            
             
             //点了保存按钮进入 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -171,7 +316,7 @@ namespace WpfGS
         private void ButtonTransmissionFileSet_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.InitialDirectory = Settings.TransmissionPath;
+            ofd.InitialDirectory = Environment.CurrentDirectory + Settings.TransmissionPath.Substring(1);
             
             //点了保存按钮进入 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -200,6 +345,7 @@ namespace WpfGS
             }
 
             treeview.ItemsSource = Bind(theFolder);
+
         }
 
         void drumCreate(string folderpath)
@@ -393,195 +539,68 @@ namespace WpfGS
             }
             return "";
         }
-        void ItemLoad(string path)
+        
+        #endregion
+
+        TcpClient DetectorTcp,MotorTcp;
+        private void ButtonConnect_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string line;
-                    line = sr.ReadLine();
-                    folderName.Text = GetStr(line);
+                if(null==DetectorTcp)DetectorTcp = new TcpClient(DetectorIP.Text, 502);
+                else DetectorTcp.Connect(DetectorIP.Text, 502);
+                Circle1.Fill = new SolidColorBrush(Colors.Green);
 
-                    line = sr.ReadLine();
-                    string data = GetStr(line);
-                    ID.Text = data;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
 
-                    line = sr.ReadLine();
-                    data = GetStr(line);
-                    Description.Text = data;
-
-                    line = sr.ReadLine();
-                    data = GetStr(line);
-                    DateTime dt;
-                    DateTime.TryParse(data, out dt);
-                    date.SelectedDate = dt;
-
-                    line = sr.ReadLine();
-                    data = GetStr(line);
-                    if (data == "SGS")
-                    {
-                        type.SelectedIndex = 0;
-                    }
-                    else if (data == "TSGS")
-                    {
-                        type.SelectedIndex = 1;
-                    }
-                    else if (data == "TGS")
-                    {
-                        type.SelectedIndex = 2;
-                    }
-                    else
-                    {
-                        System.Windows.MessageBox.Show(
-                        "文件读取错误",
-                        "错误",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                        return;
-                    }
-
-                    line = sr.ReadLine();
-                    data = GetStr(line);
-                    int index = 0;
-                    foreach (ContainerPara cp in drum.Items)
-                    {
-                        if (cp.Description == data)
-                        {
-                            break;
-                        }
-                        index++;
-                    }
-                    drum.SelectedIndex = index;
-
-                    line = sr.ReadLine();
-                    data = data = GetStr(line);
-                    index = 0;
-                    foreach (DetectorPara dp in detector.Items)
-                    {
-                        if (dp.Description == data)
-                        {
-                            break;
-                        }
-                        index++;
-                    }
-                    detector.SelectedIndex = index;
-
-                    line = sr.ReadLine();
-                    data = data = GetStr(line);
-                    calibrationFilePath = data;
-                    calibrationFile.Text = calibrationFilePath.Substring(calibrationFilePath.LastIndexOf("\\") + 1);
-
-                    line = sr.ReadLine();
-                    data = data = GetStr(line);
-                    int TransmissionMeasure;
-                    int.TryParse(data, out TransmissionMeasure);
-                    if (TransmissionMeasure == 1)
-                        isTM.IsChecked = true;
-                    else
-                        isTM.IsChecked = false;
-
-                    line = sr.ReadLine();
-                    data = data = GetStr(line);
-                    transmissionFilePath = data;
-                    transmissionFile.Text = transmissionFilePath.Substring(transmissionFilePath.LastIndexOf("\\") + 1);
-
-                    line = sr.ReadLine();
-                    data = data = GetStr(line);
-                    int ScanType;
-                    int.TryParse(data, out ScanType);
-
-                    if (ScanType == 1)
-                    {
-                        r1.IsChecked = true;
-
-                        line = sr.ReadLine();
-                        data = data = GetStr(line);
-                        startpos.Text = data;
-
-                        line = sr.ReadLine();
-                        data = data = GetStr(line);
-                        step.Text = data;
-
-                        line = sr.ReadLine();
-                        data = data = GetStr(line);
-                        stoppos.Text = data;
-                    }
-                    else if (ScanType == 2)
-                    {
-                        r2.IsChecked = true;
-                        line = sr.ReadLine();
-                        data = data = GetStr(line);
-                        start.Text = data;
-
-                        line = sr.ReadLine();
-                        data = data = GetStr(line);
-                        distance.Text = data;
-                    }
-
-                    else if (ScanType == 3)
-                    {
-                        r3.IsChecked = true;
-                        line = sr.ReadLine();
-                        data = data = GetStr(line);
-                        pos.Text = data;
-
-                    }
+            try
+            {
+                if (null == MotorTcp) MotorTcp = new TcpClient(MotorIP.Text, 502);
+                else MotorTcp.Connect(MotorIP.Text, 502);
+                Circle2.Fill = new SolidColorBrush(Colors.Green);
 
 
-                }
-            }catch(Exception ex){}
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
-        #endregion
 
         private void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            using (TcpClient client = new TcpClient("127.0.0.1", 502))
+            try
             {
-                ModbusIpMaster master = ModbusIpMaster.CreateIp(client);
-                ushort[]r={100,200,300,400};
-                master.WriteMultipleRegisters(1, 0, r);
-            }
-            */
-            using (TcpClient client = new TcpClient("192.168.31.100", 502))
-            {
-
-                ModbusIpMaster master = ModbusIpMaster.CreateIp(client);
-
-                //detection time,file name
-                string OutputFileName = "firstTest";
-                master.WriteMultipleRegisters(1, 0, StrToUshort(10, OutputFileName));
-
-                //start detection or not,live or real model
-                bool[] Coils={true,true};
-                master.WriteMultipleCoils(1, 0, Coils);
-                
-
-                while (master.ReadCoils(1, 0, 1)[0])
-                {
-                    Thread.Sleep(1000);
+                if(true==r1.IsChecked){
+                    int Start = int.Parse(startpos.Text), Step = int.Parse(step.Text), End = int.Parse(stoppos.Text);
+                    
                 }
-                System.Windows.MessageBox.Show("Finished");
+                else if (true == r2.IsChecked)
+                {
+
+                }
+                else if (true == r3.IsChecked)
+                {
+
+                }
+
+                System.Windows.MessageBox.Show("探测完成");
 
 
-            } 
+            } catch(Exception ex){
+                System.Windows.MessageBox.Show(ex.Message);
+            }
 
             //ProgressBarProcessing();
         }
-        ushort[] StrToUshort(ushort t, string str)
-        {
-            List<ushort> r = new List<ushort>(255);
-            ushort len = (ushort)str.Length;
-            r.Add(t);
-            r.Add(len);
-            for (int i = 0; i < len; i++)
-                r.Add(str[i]);
 
-            return r.ToArray();
-
-
-        }
+        //detection time,file name
+        
         //Create a Delegate that matches the Signature of the ProgressBar's SetValue method
         private delegate void UpdateProgressBarDelegate(System.Windows.DependencyProperty dp, Object value);
         private void ProgressBarProcessing()
@@ -623,6 +642,8 @@ namespace WpfGS
             while (ProgressBar1.Value != ProgressBar1.Maximum);
 
         }
+
+        
 
         
 

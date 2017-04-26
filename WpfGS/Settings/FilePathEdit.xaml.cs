@@ -36,6 +36,9 @@ namespace WpfGS
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (Settings.CalibrationPath[0] == '.') fbd.SelectedPath = Environment.CurrentDirectory + Settings.CalibrationPath.Substring(1);
+            else fbd.SelectedPath = Settings.CalibrationPath;
+
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 text1.Text = fbd.SelectedPath;
@@ -45,6 +48,9 @@ namespace WpfGS
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (Settings.TransmissionPath[0] == '.') fbd.SelectedPath = Environment.CurrentDirectory + Settings.TransmissionPath.Substring(1);
+            else fbd.SelectedPath = Settings.TransmissionPath;
+
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 text2.Text = fbd.SelectedPath;
@@ -54,6 +60,9 @@ namespace WpfGS
         private void Button3_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (Settings.DataPath[0] == '.') fbd.SelectedPath = Environment.CurrentDirectory + Settings.DataPath.Substring(1);
+            else fbd.SelectedPath = Settings.DataPath;
+
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 text3.Text = fbd.SelectedPath;

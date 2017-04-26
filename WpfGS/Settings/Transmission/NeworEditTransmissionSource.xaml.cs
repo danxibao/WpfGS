@@ -52,6 +52,8 @@ namespace WpfGS
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             bool isOK = true;
+
+            if(Opt)
             foreach (TransmissionSourcePara exist in Settings.listtsp)
             {
                 if (exist.Description == Description.Text)
@@ -64,6 +66,7 @@ namespace WpfGS
                     return;
                 }
             }
+
             if ("" == Description.Text) isOK = false;
 
             if (isOK)

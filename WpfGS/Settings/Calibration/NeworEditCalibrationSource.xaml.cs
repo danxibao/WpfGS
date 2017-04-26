@@ -53,6 +53,8 @@ namespace WpfGS
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             bool isOK = true;
+
+            if(Opt)
             foreach (CalibrationSourcePara exist in Settings.listcsp)
             {
                 if (exist.Description == Description.Text)

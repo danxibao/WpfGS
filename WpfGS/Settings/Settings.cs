@@ -21,94 +21,90 @@ namespace WpfGS
 
          static void ReadFiles()
         {
-            bool PathOK = true;
-            string FileName;
-            StreamReader sr;
-            StreamWriter sw;
-            //Read CalibrationPath
-            FileName = ".\\Settings\\CalibrationPath.txt";
-            if (File.Exists(FileName))
-            {
-                sr = new StreamReader(FileName);
-                CalibrationPath = sr.ReadLine();
-                sr.Close();
-                if (!Directory.Exists(CalibrationPath))
+            try {
+                string FileName;
+                StreamReader sr;
+                StreamWriter sw;
+                //Read CalibrationPath
+                FileName = ".\\Settings\\CalibrationPath.txt";
+                if (File.Exists(FileName))
                 {
-                    PathOK = false;
+                    sr = new StreamReader(FileName);
+                    CalibrationPath = sr.ReadLine();
+                    sr.Close();
+                    if (!Directory.Exists(CalibrationPath))
+                    {
+                        Directory.CreateDirectory(CalibrationPath);
+                    }
+
+                }
+                else
+                {
+                    //File.Create(FileName);//创建该文件
+                    CalibrationPath = ".\\CalibrationFiles";
+                    sw = new StreamWriter(FileName);
+                    sw.WriteLine(CalibrationPath);
+                    sw.Close();
+                    if (!Directory.Exists(CalibrationPath))
+                    {
+                        Directory.CreateDirectory(CalibrationPath);
+                    }
+                }
+                //Read TransmissionPath
+                FileName = ".\\Settings\\TransmissionPath.txt";
+                if (File.Exists(FileName))
+                {
+                    sr = new StreamReader(FileName);
+                    TransmissionPath = sr.ReadLine();
+                    sr.Close();
+                    if (!Directory.Exists(TransmissionPath))
+                    {
+                        Directory.CreateDirectory(TransmissionPath);
+                    }
+
+                }
+                else
+                {
+                    //File.Create(FileName);//创建该文件
+                    TransmissionPath = ".\\TransmissionFiles";
+                    sw = new StreamWriter(FileName);
+                    sw.WriteLine(TransmissionPath);
+                    sw.Close();
+                    if (!Directory.Exists(TransmissionPath))
+                    {
+                        Directory.CreateDirectory(TransmissionPath);
+                    }
                 }
 
-            }
-            else
-            {
-                //File.Create(FileName);//创建该文件
-                CalibrationPath = ".\\CalibrationFiles";
-                sw = new StreamWriter(FileName);
-                sw.WriteLine(CalibrationPath);
-                sw.Close();
-                if (!Directory.Exists(CalibrationPath))
+                //Read DataPath
+                FileName = ".\\Settings\\DataPath.txt";
+                if (File.Exists(FileName))
                 {
-                    Directory.CreateDirectory(CalibrationPath);
-                }
-            }
-            //Read TransmissionPath
-            FileName = ".\\Settings\\TransmissionPath.txt";
-            if (File.Exists(FileName))
-            {
-                sr = new StreamReader(FileName);
-                TransmissionPath = sr.ReadLine();
-                sr.Close();
-                if (!Directory.Exists(TransmissionPath))
-                {
-                    PathOK = false;
-                }
+                    sr = new StreamReader(FileName);
+                    DataPath = sr.ReadLine();
+                    sr.Close();
+                    if (!Directory.Exists(DataPath))
+                    {
+                        Directory.CreateDirectory(DataPath);
+                    }
 
-            }
-            else
-            {
-                //File.Create(FileName);//创建该文件
-                TransmissionPath = ".\\TransmissionFiles";
-                sw = new StreamWriter(FileName);
-                sw.WriteLine(TransmissionPath);
-                sw.Close();
-                if (!Directory.Exists(TransmissionPath))
+                }
+                else
                 {
-                    Directory.CreateDirectory(TransmissionPath);
+                    //File.Create(FileName);//创建该文件
+                    DataPath = ".\\DataFiles";
+                    sw = new StreamWriter(FileName);
+                    sw.WriteLine(DataPath);
+                    sw.Close();
+                    if (!Directory.Exists(DataPath))
+                    {
+                        Directory.CreateDirectory(DataPath);
+                    }
                 }
             }
-
-            //Read DataPath
-            FileName = ".\\Settings\\DataPath.txt";
-            if (File.Exists(FileName))
+            catch(Exception ex)
             {
-                sr = new StreamReader(FileName);
-                DataPath = sr.ReadLine();
-                sr.Close();
-                if (!Directory.Exists(DataPath))
-                {
-                    PathOK = false;
-                }
-
-            }
-            else
-            {
-                //File.Create(FileName);//创建该文件
-                DataPath = ".\\DataFiles";
-                sw = new StreamWriter(FileName);
-                sw.WriteLine(DataPath);
-                sw.Close();
-                if (!Directory.Exists(DataPath))
-                {
-                    Directory.CreateDirectory(DataPath);
-                }
-            }
-
-            if (!PathOK)
-            {
-                System.Windows.MessageBox.Show(
-                    "文件路径错误，请重新设置",
-                    "ExpenseIt Standalone",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
+                System.Windows.MessageBox.Show("文件路径错误，错误信息："+ex.Message);
             }
             
         }
@@ -341,7 +337,7 @@ namespace WpfGS
 
          #region Detector
          public static List<DetectorPara> listdp = new List<DetectorPara>();
-         public static string DetectorPath = Settings.SettingsDirectory + "\\Detector.txt";
+         public static string DetectorPath = SettingsDirectory + "\\Detector.txt";
          public static void listdpLoad()
          {
              Settings.listdp.Clear();
@@ -362,6 +358,12 @@ namespace WpfGS
                      line = sr.ReadLine();
                      dp.Information = line;
 
+                     line = sr.ReadLine();
+                     dp.DetectorIP = line;
+
+                     line = sr.ReadLine();
+                     dp.MotorIP = line;
+
                      Settings.listdp.Add(dp);
                  }
                  sr.Close();
@@ -374,10 +376,14 @@ namespace WpfGS
              {
                  sw.WriteLine(dp.Description);
                  sw.WriteLine(dp.Information);
+                 sw.WriteLine(dp.DetectorIP);
+                 sw.WriteLine(dp.MotorIP);
              }
              sw.Close();
          }
          #endregion
+
+
      }
 
      public class ContainerPara
@@ -486,6 +492,8 @@ namespace WpfGS
 
          public string Description { get; set; }
          public string Information { get; set; }
+         public string DetectorIP { get; set; }
+         public string MotorIP { get; set; }
 
          public DetectorPara()
          {
@@ -496,8 +504,10 @@ namespace WpfGS
          {
              Description = cp.Description;
              Information = cp.Information;
-             
+             DetectorIP = cp.DetectorIP;
+             MotorIP = cp.MotorIP;
          }
      }
+
 
 }
