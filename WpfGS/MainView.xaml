@@ -117,7 +117,7 @@
                     	HorizontalAlignment="Left" Height="23" Margin="39,68,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60"/>
                             </Grid>
                         </GroupBox>
-                        <GroupBox  HorizontalAlignment="Left" Margin="178,284,0,0" VerticalAlignment="Top" Height="122" Width="160">
+                        <GroupBox  HorizontalAlignment="Left" Margin="178,284,0,0" VerticalAlignment="Top" Height="122" Width="160" IsEnabled="False">
                             <GroupBox.Header>
                                 <RadioButton Content="连续扫描" HorizontalAlignment="Left"  VerticalAlignment="Top"
                                          GroupName="1" Name="r2"/>
@@ -135,7 +135,7 @@
 
                             </Grid>
                         </GroupBox>
-                        <GroupBox  HorizontalAlignment="Left" Margin="343,284,0,0" VerticalAlignment="Top" Height="122" Width="160">
+                        <GroupBox  HorizontalAlignment="Left" Margin="343,284,0,0" VerticalAlignment="Top" Height="122" Width="160" IsEnabled="False">
                             <GroupBox.Header>
                                 <RadioButton Content="固定位置" HorizontalAlignment="Left"  VerticalAlignment="Top"
                                          GroupName="1" Name="r3"/>

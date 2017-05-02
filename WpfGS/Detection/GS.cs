@@ -12,18 +12,23 @@ using Modbus.Data;
 using Modbus.Device;
 using Modbus.Utility;
 
+using System.IO;
+
 namespace WpfGS
 {
     class GSBase
     {
         public ModbusIpMaster Mot, Det;
-        public GSBase(TcpClient MotTcp, TcpClient DetTcp)
+        public MainView pMain;
+        public GSBase(TcpClient MotTcp, TcpClient DetTcp,MainView main)
         {
             if (null == MotTcp) throw new Exception("电机未连接");
             Mot = ModbusIpMaster.CreateIp(MotTcp);
 
             if (null == DetTcp) throw new Exception("探测器未连接");
             Det = ModbusIpMaster.CreateIp(DetTcp);
+
+            pMain = main;
 
         }
         
@@ -100,15 +105,34 @@ namespace WpfGS
     }
     class SGS:GSBase
     {
-        SGS(TcpClient MotTcp,TcpClient DetTcp)
-            :base(MotTcp,DetTcp)
+        //layer detection
+        ushort RotationMode, Spd, Pos, Time;
+        bool Mode;
+
+
+        public SGS(TcpClient MotTcp,TcpClient DetTcp,MainView main)
+            :base(MotTcp,DetTcp,main)
         {
+            using (StreamReader sr = new StreamReader(".\\Settings\\SGS.txt"))
+            {
+                string line;
+                while ((line = sr.ReadLine())[0] == '#') ;
+                string[] s = line.Split(new Char[] { ' ' });
+                RotationMode = ushort.Parse(s[0]);
+                Spd = ushort.Parse(s[1]);
+                Pos = ushort.Parse(s[2]);
+                Time = ushort.Parse(s[3]);
+                Mode = int.Parse(s[4])==1;
+            }
+
         }
-        void FixedPos(ushort Height)
+
+
+        public void FixedPos(ushort Height)
         {
             
         }
-        void LayerDet(int Start,int Step,int End,string ID)
+        public void LayerDet(int Start,int Step,int End,string ID)
         {
             
             int NOofLayers = (End - Start) / Step + 1;
@@ -116,7 +140,13 @@ namespace WpfGS
             for (int i = 0; i < NOofLayers; ++i)
             {
                 ushort Height=(ushort)(Start+Step*i);
-                //MotorControl(Height,);
+
+                //progressbar update
+                pMain.ProgressUpdate(Step);
+
+                MotorControl(Height,RotationMode,Spd,Pos);
+
+                DetectorControl(ID,i,Time,Mode);
 
             }
         }
@@ -125,16 +155,16 @@ namespace WpfGS
 
     class TSGS : GSBase
     {
-        TSGS(TcpClient MotTcp,TcpClient DetTcp)
-            :base(MotTcp,DetTcp)
+        public TSGS(TcpClient MotTcp, TcpClient DetTcp, MainView main)
+            :base(MotTcp,DetTcp,main)
         {
         }
     }
 
     class TGS : GSBase
     {
-        TGS(TcpClient MotTcp,TcpClient DetTcp)
-            :base(MotTcp,DetTcp)
+        public TGS(TcpClient MotTcp, TcpClient DetTcp, MainView main)
+            :base(MotTcp,DetTcp,main)
         {
         }
     }

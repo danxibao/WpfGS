@@ -1,2 +1,3 @@
 #RotationMode,Spd,Pos #Time,Mode
+#layer detection
 3 10 50 10 1

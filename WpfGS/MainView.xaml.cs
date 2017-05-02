@@ -542,7 +542,7 @@ namespace WpfGS
         
         #endregion
 
-        TcpClient DetectorTcp,MotorTcp;
+        TcpClient MotorTcp,DetectorTcp;
         private void ButtonConnect_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -578,6 +578,16 @@ namespace WpfGS
             {
                 if(true==r1.IsChecked){
                     int Start = int.Parse(startpos.Text), Step = int.Parse(step.Text), End = int.Parse(stoppos.Text);
+                    ProgressBar1.Minimum = Start;
+                    ProgressBar1.Maximum = End;
+                    ProgressBar1.Value = Start;
+                    
+
+                    SGS sgs = new SGS(MotorTcp,DetectorTcp,this);
+                    sgs.LayerDet(Start, Step, End, ID.Text);
+
+                    
+                    
                     
                 }
                 else if (true == r2.IsChecked)
@@ -596,50 +606,35 @@ namespace WpfGS
                 System.Windows.MessageBox.Show(ex.Message);
             }
 
-            //ProgressBarProcessing();
+
         }
 
-        //detection time,file name
         
         //Create a Delegate that matches the Signature of the ProgressBar's SetValue method
         private delegate void UpdateProgressBarDelegate(System.Windows.DependencyProperty dp, Object value);
-        private void ProgressBarProcessing()
+        public void ProgressUpdate(int Step)
         {
-            //Configure the ProgressBar
-            ProgressBar1.Minimum = 0;
-            ProgressBar1.Maximum = short.MaxValue;
-            ProgressBar1.Value = 0;
-
-            //Stores the value of the ProgressBar
-            int value = 0;
-
-            int STEP=short.MaxValue/8,layer=1;
+            System.Windows.Controls.ProgressBar pb = ProgressBar1;
             //Create a new instance of our ProgressBar Delegate that points
             //  to the ProgressBar's SetValue method.
             UpdateProgressBarDelegate updatePbDelegate = new UpdateProgressBarDelegate(ProgressBar1.SetValue);
 
-            Notice.Text="正在测量第1/9层";
-            //Tight Loop:  Loop until the ProgressBar.Value reaches the max
-            do
-            {
-                value += 1;
 
+            Notice.Text = "正在测量第" +
+                    ((pb.Value - pb.Minimum) / Step + 1) + "/" +
+                    ((pb.Maximum - pb.Minimum) / Step + 1) + "层";
+
+            
                 /*Update the Value of the ProgressBar:
-                  1)  Pass the "updatePbDelegate" delegate that points to the ProgressBar1.SetValue method
-                  2)  Set the DispatcherPriority to "Background"
-                  3)  Pass an Object() Array containing the property to update (ProgressBar.ValueProperty) and the new value */
+          1)  Pass the "updatePbDelegate" delegate that points to the ProgressBar1.SetValue method
+          2)  Set the DispatcherPriority to "Background"
+          3)  Pass an Object() Array containing the property to update (ProgressBar.ValueProperty) and the new value */
+
                 Dispatcher.Invoke(updatePbDelegate,
-                    System.Windows.Threading.DispatcherPriority.Background,
-                    new object[] { System.Windows.Controls.ProgressBar.ValueProperty, (double)value });
+                System.Windows.Threading.DispatcherPriority.Background,
+                new object[] { System.Windows.Controls.ProgressBar.ValueProperty, (double)pb.Value });
 
-                if (value > STEP * layer )
-                {
-                    layer++;
-                    Notice.Text = "正在测量第" + layer + "/9层";
-                }
-
-            }
-            while (ProgressBar1.Value != ProgressBar1.Maximum);
+                pb.Value += Step;
 
         }
 
