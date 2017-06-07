@@ -184,7 +184,9 @@ namespace WpfGS
         private void treeNew_Click(object sender, RoutedEventArgs e)
         {
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.InitialDirectory = Settings.TransmissionPath;
+                if (Settings.TransmissionPath[0] == '.') sfd.InitialDirectory = Environment.CurrentDirectory + Settings.TransmissionPath.Substring(1);
+                else sfd.InitialDirectory = Settings.TransmissionPath;
+                
                 sfd.Title = "新建数据文件";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -203,7 +205,8 @@ namespace WpfGS
         private void AddFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-
+            if (Settings.TransmissionPath[0] == '.') ofd.InitialDirectory = Environment.CurrentDirectory + Settings.TransmissionPath.Substring(1);
+            else ofd.InitialDirectory = Settings.TransmissionPath;
             //点了保存按钮进入 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
