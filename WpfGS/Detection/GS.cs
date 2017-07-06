@@ -164,17 +164,17 @@ namespace WpfGS
                 sw.WriteLine("TITLE=\"" + fileNameExt + "\"");
                 str = "VARIABLES= \"Angle\" \"dY\" \"Height\" ";
 
-                Dictionary<double, double> dict=new Dictionary<double,double>();
+                Dictionary<double, double> Energy=new Dictionary<double,double>();
                 foreach (DetPara det in listDet)
                 {
                     foreach (double k in det.dict.Keys)
                     {
-                        dict[k] = 1;
+                        Energy[k] = 1;
                     }
                 }
-                foreach (double energy in dict.Keys)
+                foreach (double e in Energy.Keys)
                 {
-                    str += "\"" + energy + "\" ";
+                    str += "\"" + e + "\" ";
                 }
                 sw.WriteLine(str);
 
@@ -187,9 +187,12 @@ namespace WpfGS
                     str += det.Height.ToString("E8") + " ";
 
                     
-                    foreach (double k in det.dict.Keys)
+                    foreach (double k in Energy.Keys)
                     {
-                        str += det.dict[k].ToString("E8") + " ";
+                        if(det.dict.ContainsKey(k))
+                            str += det.dict[k].ToString("E8") + " ";
+                        else
+                            str += (0).ToString("E8") + " ";
                     }
                     sw.WriteLine(str);
                 }

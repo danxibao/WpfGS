@@ -587,8 +587,9 @@ namespace WpfGS
                     sgs.LayerDet(Start, Step, End, ID.Text);
 
                     /*
-                     * //test part
+                    //test part
                     sgs.addDet(0, 0, 5, "TEST_BKG.rpt");
+                    sgs.addDet(0, 0, 10, "TEST_BKG_1.rpt");
                     var n = treeview.SelectedItem as Node;
                     sgs.SaveFile(n.fpath + "\\" + n.Name + "\\_EmisDect.dat");
                     */
