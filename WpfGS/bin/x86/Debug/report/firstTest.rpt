@@ -1,0 +1,213 @@
+*************************************************************************
+*****        G A M M A   S P E C T R U M    A N A L Y S I S         *****
+*************************************************************************
+
+
+Filename: D:\GSsoftware\Genie2000\Debug\report\XXX.cnf                 
+
+Report Generated On             : 2017-5-2   15:23:12   
+
+Sample Title                    : Sample title.                          
+Sample Description              :                                 
+Sample Identification           :                 
+Sample Type                     :                 
+Sample Geometry                 :                 
+
+Peak Locate Threshold           :  3.00
+Peak Locate Range (in channels) :     1 -  4096
+Peak Area Range (in channels)   :     1 -  4096
+Identification Energy Tolerance :    1.000 keV
+
+Sample Size                     :  1.000E+000 Unit    
+
+Sample Taken On                 :                       
+Acquisition Started             : 2017-4-17  10:28:02   
+
+Live Time                       :       10.0 seconds
+Real Time                       :       10.0 seconds
+
+Dead Time                       :   0.50 %
+
+
+              Energy Calibration Used Done On       :           
+              Efficiency Calibration Used Done On   : ??????????
+              Efficiency ID                         :                        
+
+Energy Calibration Report            2017-5-2   15:23:12          Page  2
+
+
+**************************************************************************
+*****       E N E R G Y   C A L I B R A T I O N   R E P O R T        *****
+**************************************************************************
+
+     Detector Name:  DET01                           
+     Sample Title:   Sample title.                                     
+
+       *************  ENERGY CALIBRATION COEFFICIENTS  *************
+
+               Energy Calibrate Performed on:                        
+                       by: ??????????????????????
+               Energy Calibrate Type:          POLY    
+
+   Energy(keV) =     0.000 +     0.250*ch +  0.00E+000*ch^2 +  0.00E+000*ch^3
+
+       *************  SHAPE CALIBRATION COEFFICIENTS   *************
+
+               Shape Calibrate Performed on:                        
+                       by: ???????????????????????
+
+               FWHM     =     1.000  +   0.030*E^1/2
+
+               LOW TAIL =   0.0E+000 +  0.0E+000*E
+
+****************     ENERGY CALIBRATION RESULTS TABLE     ****************
+
+                    Centroid      Centroid         Energy
+                    Channel       error            (keV )
+                    ????????      ??????              0.00
+
+       *********     SHAPE CALIBRATION RESULTS TABLE      *********
+
+             Energy     FWHM       FWHM         TAIL        TAIL
+             (keV )     channels   error        channels    error
+                0.00    ??????    ??????         ??????    ??????
+Efficiency Calibration Report             2017-5-2   15:23:12      Page  3
+
+
+**************************************************************************
+*****   E F F I C I E N C Y   C A L I B R A T I O N    R E P O R T   *****
+**************************************************************************
+
+     Detector Name:  DET01                           
+     Sample Title:   Sample title.                                     
+
+     Geometry Description:                 
+     Efficiency Calibration Performed on:  ?????????? ???????????
+                       by:                         
+     Geometry Type Used:   DUAL            
+
+
+                      DUAL Efficiency Calibration Equation
+                      ====================================
+
+                                 No DUAL Equation
+
+Efficiency Calibration Report             2017-5-2   15:23:12      Page  4
+
+
+                      EMPIRICAL Efficiency Calibration Equation
+                      =========================================
+
+                                 No EMPIRICAL Equation
+
+
+                      LINEAR Efficiency Calibration Equation
+                      ======================================
+
+                                 No LINEAR Equation
+
+Peak-to-Total Calibration Report          2017-5-2   15:23:12      Page  5
+
+
+**************************************************************************
+**   P E A K - T O - T O T A L   C A L I B R A T I O N   R E P O R T   ***
+**************************************************************************
+
+     Detector Name:  DET01                           
+     Sample Title:   Sample title.                                     
+     Peak-to-Total Calibration Performed on:  ?????????? ???????????
+
+
+                  Peak-to-Total Calibration Equation
+                  =============================================
+
+                                 No Peak-to-Total Equation
+
+Library Correlation NID Report        2017-5-2   15:23:12           Page  6
+
+
+No nuclide identification results available for reporting purposes
+Library Correlation NID Report        2017-5-2   15:23:12           Page  7
+
+
+No peak locate results available for reporting purposes
+Peak Locate Analysis Report             2017-5-2   15:23:12        Page  8
+
+No peak locate results available for reporting purposes
+
+No peak analysis results available for reporting purposes
+Peak Analysis Report                    2017-5-2   15:23:12             Page  9
+
+
+*******************************************************************************
+*****  S T A N D A R D   V M S   P E A K   A N A L Y S I S   R E P O R T  *****
+*******************************************************************************
+
+        Configuration Title:                                         
+        Spectrum Title:              Sample title.            
+        Peak Analysis Performed on:  17-5-2   15:23:12   
+        Peak Analysis From Channel:      1    To Channel:     4096
+        Peak Search Sensitivity:      3.00    Gaussian Sensitivity:  0.00
+        Max Iterations:  0  Fit Singlets: No  Critical Level Test: No 
+        Use Fixed FWHM: No  FWHM Reject:  No  FWHM Reject Ratio:  0.00 
+        Peak Fit Engine Name: ?????????       Continuum Type: LINEAR 
+
+        No peak analysis results available for reporting purposes
+Peak Analysis Report             2017-5-2   15:23:12               Page 10
+
+
+No peak analysis results available for reporting purposes
+Peak with NID Report             2017-5-2   15:23:12               Page 11
+
+
+No peak analysis results available for reporting purposes
+Peak Efficiency Report             2017-5-2   15:23:12             Page 12
+
+
+No peak analysis results available for reporting purposes.
+Background Subtract Report             2017-5-2   15:23:12         Page 13
+
+No background subtract performed on this spectrum.
+No area correction performed on this spectrum.
+Nuclide Identification Report        2017-5-2   15:23:12           Page 14
+
+
+No nuclide identification results available for reporting purposes
+Interference Corrected Activity Report    2017-5-2   15:23:12      Page 15
+
+
+No nuclide identification results available for reporting purposes
+Nuclide MDA Report                      2017-5-2   15:23:12        Page 16
+
+
+No MDA analysis results available for reporting purposes
+Nuclide MDA Report                      2017-5-2   15:23:12        Page 17
+
+
+No MDA analysis results available for reporting purposes
+ISO11929 Report                      2017-5-2   15:23:12        Page 18
+
+
+No ISO11929 analysis results available for reporting purposes
+Action Level Summary Report             2017-5-2   15:23:12        Page 19
+
+
+No Action Level results available for reporting purposes
+
+*************************************************************************
+*****                 A U T O  G A I N   A D J U S T                *****
+*************************************************************************
+
+Report Generated On:                               2017-5-2   15:23:12   
+
+
+No AGA results for reporting.
+Status:                                                                 
+
+
+This report is valid only if a Certificate was the source of the true values.
+
+
+No AGA results for reporting.
+Status:                                                                 
+

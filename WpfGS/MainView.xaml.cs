@@ -151,7 +151,7 @@ namespace WpfGS
                     {
                         type.SelectedIndex = 0;
                     }
-                    else if (data == "TSGS")
+                    else if (data == "STGS")
                     {
                         type.SelectedIndex = 1;
                     }
@@ -586,8 +586,12 @@ namespace WpfGS
                     SGS sgs = new SGS(MotorTcp,DetectorTcp,this);
                     sgs.LayerDet(Start, Step, End, ID.Text);
 
-                    
-                    
+                    /*
+                     * //test part
+                    sgs.addDet(0, 0, 5, "TEST_BKG.rpt");
+                    var n = treeview.SelectedItem as Node;
+                    sgs.SaveFile(n.fpath + "\\" + n.Name + "\\_EmisDect.dat");
+                    */
                     
                 }
                 else if (true == r2.IsChecked)
@@ -638,14 +642,23 @@ namespace WpfGS
 
         }
 
-        
+        private void tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (tab.SelectedIndex)
+            {
+                case 0:
+                    treeview.IsEnabled = true;
+                    break;
+                case 1:
+                    treeview.IsEnabled = false;
+                    break;
 
-        
+                case 2:
+                    treeview.IsEnabled = true;
+                    break;
+            }
+        }
 
-
-        
-        
-        
     }
 
     

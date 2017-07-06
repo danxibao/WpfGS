@@ -1,0 +1,517 @@
+*************************************************************************
+*****        G A M M A   S P E C T R U M    A N A L Y S I S         *****
+*************************************************************************
+
+
+Filename: C:\GENIE2K\CAMFILES\TEST_BKG.CNF                             
+
+Report Generated On             : 2017-5-7   15:59:01   
+
+Sample Title                    : GENIE-PC Background File No. 1         
+Sample Description              :                                 
+Sample Identification           : OVERNIGHT BACKGR
+Sample Type                     :                 
+Sample Geometry                 : Geometry #5     
+
+Peak Locate Threshold           :  3.00
+Peak Locate Range (in channels) :     1 -  4096
+Peak Area Range (in channels)   :     1 -  4096
+Identification Energy Tolerance :    0.000 keV
+
+Sample Size                     :  1.000E+000 Unit    
+
+Sample Taken On                 : 1977-11-24 21:40:10   
+Acquisition Started             : 1977-11-24 21:40:10   
+
+Live Time                       :    50000.0 seconds
+Real Time                       :    50107.0 seconds
+
+Dead Time                       :   0.21 %
+
+
+              Energy Calibration Used Done On       : 1994-4-1  
+              Efficiency Calibration Used Done On   : 1994-4-1  
+              Efficiency ID                         :                        
+
+Energy Calibration Report            2017-5-7   15:59:01          Page  6
+
+
+**************************************************************************
+*****       E N E R G Y   C A L I B R A T I O N   R E P O R T        *****
+**************************************************************************
+
+     Detector Name:                                  
+     Sample Title:   GENIE-PC Background File No. 1                    
+
+       *************  ENERGY CALIBRATION COEFFICIENTS  *************
+
+               Energy Calibrate Performed on:  1994-4-1   15:08:31   
+                       by: KOSKELO               
+               Energy Calibrate Type:          POLY    
+
+   Energy(keV) =    10.406 +     0.526*ch +  0.00E+000*ch^2 +  0.00E+000*ch^3
+
+       *************  SHAPE CALIBRATION COEFFICIENTS   *************
+
+               Shape Calibrate Performed on:  1994-4-1   15:08:31   
+                       by: KOSKELO                
+
+               FWHM     =    -0.110  +   0.026*E^1/2
+
+               LOW TAIL =  -4.1E-001 +  7.1E-004*E
+
+****************     ENERGY CALIBRATION RESULTS TABLE     ****************
+
+                    Centroid      Centroid         Energy
+                    Channel       error            (keV )
+                      148.56        0.03              0.00
+                      256.64        2.94              0.00
+                      496.10        0.06              0.00
+                      720.15        2.09              0.00
+                     1239.71        0.01              0.00
+                     2209.93        0.03              0.00
+                     2511.98        0.16              0.00
+                     3489.39        0.23              0.00
+
+       *********     SHAPE CALIBRATION RESULTS TABLE      *********
+
+             Energy     FWHM       FWHM         TAIL        TAIL
+             (keV )     channels   error        channels    error
+                0.00      1.43      0.04           1.54     16.56
+                0.00      0.90      5.68           1.41      1.00
+                0.00      3.24      0.10           1.64      0.43
+                0.00      0.51      4.22           1.04      1.00
+                0.00      0.73      0.01           0.11      0.01
+                0.00      3.69      0.04           4.68     23.54
+                0.00      3.49      0.24           1.57      0.70
+                0.00      4.47      0.31           5.67      1.00
+Efficiency Calibration Report             2017-5-7   15:59:01      Page  7
+
+
+**************************************************************************
+*****   E F F I C I E N C Y   C A L I B R A T I O N    R E P O R T   *****
+**************************************************************************
+
+     Detector Name:                                  
+     Sample Title:   GENIE-PC Background File No. 1                    
+
+     Geometry Description:                 
+     Efficiency Calibration Performed on:  1994-4-1   15:12:26   
+                       by: KOSKELO                 
+     Geometry Type Used:   DUAL            
+
+                            Efficiency Triplets
+                            ===================
+
+                   Energy         Efficiency        Error
+
+                     74.62         3.04E-002      2.45E-003
+                    107.28         5.93E-002      1.46E-003
+                    139.93         6.86E-002      1.68E-003
+                    254.68         4.47E-002      1.11E-003
+                    334.23         3.42E-002      6.64E-004
+                    413.78         2.74E-002      4.59E-004
+                    493.34         2.27E-002      3.91E-004
+                    572.90         1.93E-002      3.44E-004
+                    652.47         1.68E-002      2.94E-004
+                    732.04         1.48E-002      2.44E-004
+                    811.62         1.32E-002      1.98E-004
+                    891.19         1.19E-002      1.60E-004
+                    970.77         1.09E-002      1.30E-004
+                   1050.35         1.00E-002      1.07E-004
+                   1129.94         9.32E-003      9.12E-005
+                   1209.52         8.71E-003      8.09E-005
+                   1289.10         8.18E-003      7.62E-005
+                   1368.68         7.72E-003      7.77E-005
+                   1448.25         7.33E-003      8.59E-005
+                   1527.82         6.98E-003      1.01E-004
+                   1607.39         6.67E-003      1.21E-004
+                   1686.96         6.40E-003      1.45E-004
+                   1766.52         6.16E-003      1.74E-004
+
+                      DUAL Efficiency Calibration Equation
+                      ====================================
+
+         Single Equation Terms ->   Offset:     -161.570
+                                     Slope:      101.540
+                                 Quadratic:      -23.887
+                                     Cubic:        2.459
+                                 4th Order:       -0.094
+                                 5th Order:        0.000
+                                 6th Order:        0.000
+                                 7th Order:        0.000
+                                 8th Order:        0.000
+                                 9th Order:        0.000
+Efficiency Calibration Report             2017-5-7   15:59:01      Page  8
+
+
+                      EMPIRICAL Efficiency Calibration Equation
+                      =========================================
+
+      Empirical Equation Terms ->  Scaling:      801.224
+                                    Offset:       -4.322
+                                     Slope:        1.034
+                                 Quadratic:        0.104
+                                     Cubic:        0.066
+                                 4th Order:       -0.094
+                                 5th Order:        0.000
+
+                      LINEAR Efficiency Calibration Equation
+                      ======================================
+
+         Linear Equation Terms ->   Offset:       -0.000
+                                     Slope:       -2.105
+                                 Quadratic:      348.039
+                                     Cubic:   -44300.875
+                                 4th Order:  2428312.750
+                                 5th Order:  -60694100.0
+                                 6th Order:        0.000
+                                 7th Order:        0.000
+                                 8th Order:        0.000
+                                 9th Order:        0.000
+Peak-to-Total Calibration Report          2017-5-7   15:59:01      Page  9
+
+
+**************************************************************************
+**   P E A K - T O - T O T A L   C A L I B R A T I O N   R E P O R T   ***
+**************************************************************************
+
+     Detector Name:                                  
+     Sample Title:   GENIE-PC Background File No. 1                    
+     Peak-to-Total Calibration Performed on:  ?????????? ???????????
+
+
+                  Peak-to-Total Calibration Equation
+                  =============================================
+
+                                 No Peak-to-Total Equation
+
+Library Correlation NID Report        2017-5-7   15:59:01           Page 10
+
+
+No nuclide identification results available for reporting purposes
+Library Correlation NID Report        2017-5-7   15:59:01           Page 11
+
+
+**************************************************************************
+*****             P E A K    L O C A T E    R E P O R T              *****
+**************************************************************************
+
+     Detector Name:                                  
+     Sample Title:   GENIE-PC Background File No. 1                    
+               Peak Locate Performed on:  2017-5-7   15:59:01   
+               Peak Locate From Channel:      1
+               Peak Locate To Channel:     4096
+               Peak Search Sensitivity:     3.00
+
+     Peak    Centroid     Energy
+      No.    Channel      (keV)
+
+       1      436.21      239.70
+       2      442.55      243.03
+       3      543.65      296.17
+       4      625.17      339.02
+       5      651.34      352.78
+       6      952.60      511.14
+       7     1090.23      583.48
+       8     1139.82      609.55
+       9     1442.00      768.39
+      10     1712.66      910.66
+      11     1822.31      968.30
+      12     1847.00      981.28
+      13     1968.00     1044.88
+      14     2109.45     1119.23
+      15     2511.97     1330.82
+      16     2755.77     1458.97
+      17     3332.23     1761.99
+
+? = Adjacent peak noted
+
+Errors quoted at  1.000 sigma
+Peak Locate Analysis Report             2017-5-7   15:59:01        Page 12
+
+**************************************************************************
+*****             P E A K    L O C A T E    R E P O R T              *****
+**************************************************************************
+
+     Detector Name:                                  
+     Sample Title:   GENIE-PC Background File No. 1                    
+               Peak Locate Performed on:  2017-5-7   15:59:01   
+               Peak Locate From Channel:      1
+               Peak Locate To Channel:     4096
+               Peak Search Sensitivity:     3.00
+
+     Peak   Centroid    Centroid     Energy       Peak
+      No.    Channel   Uncertainty   (keV)    Significance
+
+       1      436.21      0.2463      239.70      13.04
+       2      442.55      0.4263      243.03       3.02
+       3      543.65      0.2809      296.17       8.22
+       4      625.17      0.4170      339.02       4.78
+       5      651.34      0.2411      352.78      11.28
+       6      952.60      0.4199      511.14       3.38
+       7     1090.23      0.3124      583.48       7.09
+       8     1139.82      0.2455      609.55      10.00
+       9     1442.00      0.4878      768.39       4.20
+      10     1712.66      0.3218      910.66       4.35
+      11     1822.31      0.3974      968.30       3.65
+      12     1847.00      0.5691      981.28       3.09
+      13     1968.00      0.5481     1044.88       3.33
+      14     2109.45      0.3846     1119.23       3.71
+      15     2511.97      0.4718     1330.82       3.42
+      16     2755.77      0.1834     1458.97      13.34
+      17     3332.23      0.3056     1761.99       4.46
+
+? = Adjacent peak noted
+
+Errors quoted at  1.000 sigma
+Peak Analysis Report             2017-5-7   15:59:01               Page 13
+
+
+**************************************************************************
+*****           P E A K    A N A L Y S I S    R E P O R T            *****
+**************************************************************************
+
+     Detector Name:                                  
+     Sample Title:   GENIE-PC Background File No. 1                    
+     Peak Analysis Performed on:  2017-5-7   15:59:01   
+               Peak Analysis From Channel:      1
+               Peak Analysis To Channel:     4096
+
+   Peak  ROI  ROI    Peak    Energy   FWHM  Net Peak  Net Area  Continuum 
+    No. start end  centroid   (keV)   (keV)  Area     Uncert.    Counts 
+
+    1   434-  438   436.21   239.70   1.19  5.62E+003  149.62   1.03E+004 
+    2   440-  444   442.55   243.03   0.54 -1.05E+003  136.14   1.21E+004 
+    3   541-  546   543.65   296.17   1.35  3.89E+003  126.63   6.94E+003 
+    4   622-  627   625.17   339.02   1.31  1.32E+003  102.96   5.30E+003 
+    5   648-  654   651.34   352.78   1.44  6.60E+003  129.42   5.42E+003 
+    6   949-  956   952.60   511.14   1.99  2.74E+003   99.04   3.54E+003 
+    7  1086- 1094  1090.23   583.48   1.54  3.11E+003   96.42   2.91E+003 
+    8  1135- 1143  1139.82   609.55   1.56  6.17E+003  108.82   2.67E+003 
+    9  1437- 1446  1442.00   768.39   1.21  4.24E+002   72.34   2.14E+003 
+   10  1707- 1717  1712.66   910.66   1.69  2.32E+003   80.42   1.75E+003 
+   11  1818- 1827  1822.31   968.30   1.74  9.06E+002   71.33   1.86E+003 
+   12  1842- 1850  1847.00   981.28   0.53 -7.96E+001   51.64   1.29E+003 
+   13  1962- 1971  1968.00  1044.88   0.53  4.10E+001   54.97   1.33E+003 
+   14  2103- 2115  2109.45  1119.23   1.84  1.43E+003   78.28   1.79E+003 
+   15  2507- 2517  2511.97  1330.82   1.57  4.87E+002   47.55   7.47E+002 
+   16  2749- 2762  2755.77  1458.97   2.08  1.55E+004  131.48   6.67E+002 
+   17  3324- 3339  3332.23  1761.99   2.14  1.37E+003   45.66   2.38E+002 
+
+M = First peak in a multiplet region
+m = Other peak in a multiplet region
+F = Fitted singlet
+
+Errors quoted at  1.000 sigma
+Peak Analysis Report                    2017-5-7   15:59:01             Page 14
+
+
+*******************************************************************************
+*****  S T A N D A R D   V M S   P E A K   A N A L Y S I S   R E P O R T  *****
+*******************************************************************************
+
+        Configuration Title:         Sample Background File          
+        Spectrum Title:              GENIE-PC Background File 
+        Peak Analysis Performed on:  17-5-7   15:59:01   
+        Peak Analysis From Channel:      1    To Channel:     4096
+        Peak Search Sensitivity:      3.00    Gaussian Sensitivity:  0.00
+        Max Iterations:  0  Fit Singlets: No  Critical Level Test: No 
+        Use Fixed FWHM: No  FWHM Reject:  No  FWHM Reject Ratio:  0.00 
+        Peak Fit Engine Name: PANOLIN1        Continuum Type: LINEAR 
+
+   Pk IT  Energy      Area   Bkgnd  FWHM Channel  Left  PW  Cts/Sec  %err   Fit
+
+    1  0   239.70     5620   10317  1.19  436.21   434   5 1.1E-001   2.7   0.0
+    2  0   243.03    -1048   12050  0.54  442.55   440   5-2.1E-002 -13.0   0.0
+    3  0   296.17     3887    6942  1.35  543.65   541   6 7.8E-002   3.3   0.0
+    4  0   339.02     1320    5303  1.31  625.17   622   6 2.6E-002   7.8   0.0
+    5  0   352.78     6596    5415  1.44  651.34   648   7 1.3E-001   2.0   0.0
+    6  0   511.14     2739    3535  1.99  952.60   949   8 5.5E-002   3.6   0.0
+    7  0   583.48     3114    2909  1.54 1090.23  1086   9 6.2E-002   3.1   0.0
+    8  0   609.55     6166    2671  1.56 1139.82  1135   9 1.2E-001   1.8   0.0
+    9  0   768.39      424    2138  1.21 1442.00  1437  10 8.5E-003  17.1   0.0
+   10  0   910.66     2320    1746  1.69 1712.66  1707  11 4.6E-002   3.5   0.0
+   11  0   968.30      906    1859  1.74 1822.31  1818  10 1.8E-002   7.9   0.0
+   12  0   981.28      -80    1293  0.53 1847.00  1842   9-1.6E-003 -64.9   0.0
+   13  0  1044.88       41    1325  0.53 1968.00  1962  10 8.2E-004 134.1   0.0
+   14  0  1119.23     1432    1789  1.84 2109.45  2103  13 2.9E-002   5.5   0.0
+   15  0  1330.82      487     747  1.57 2511.97  2507  11 9.7E-003   9.8   0.0
+   16  0  1458.97    15453     667  2.08 2755.77  2749  14 3.1E-001   0.9   0.0
+   17  0  1761.99     1371     238  2.14 3332.23  3324  16 2.7E-002   3.3   0.0
+
+M = First peak in a multiplet region
+m = Other peak in a multiplet region
+F = Fitted singlet
+
+Errors quoted at  1.000 sigma
+Peak Analysis Report             2017-5-7   15:59:01               Page 15
+
+
+**************************************************************************
+*****           P E A K    A N A L Y S I S    R E P O R T            *****
+**************************************************************************
+
+     Detector Name:                                  
+     Sample Title:   GENIE-PC Background File No. 1                    
+     Peak Analysis Performed on:  2017-5-7   15:59:01   
+               Peak Analysis From Channel:      1
+               Peak Analysis To Channel:     4096
+
+   Peak  ROI  ROI   Energy   Net Peak Net Area  Continuum  Critical 
+    No. start end    (keV)     Area    Uncert.    Counts     Level
+
+    1   434-  438   239.70  5.62E+003  149.62   1.03E+004  2.13E+002 
+    2   440-  444   243.03 -1.05E+003  136.14   1.21E+004  2.30E+002 
+    3   541-  546   296.17  3.89E+003  126.63   6.94E+003  1.81E+002 
+    4   622-  627   339.02  1.32E+003  102.96   5.30E+003  1.58E+002 
+    5   648-  654   352.78  6.60E+003  129.42   5.42E+003  1.66E+002 
+    6   949-  956   511.14  2.74E+003   99.04   3.54E+003  1.38E+002 
+    7  1086- 1094   583.48  3.11E+003   96.42   2.91E+003  1.29E+002 
+    8  1135- 1143   609.55  6.17E+003  108.82   2.67E+003  1.24E+002 
+    9  1437- 1446   768.39  4.24E+002   72.34   2.14E+003  1.14E+002 
+   10  1707- 1717   910.66  2.32E+003   80.42   1.75E+003  1.06E+002 
+   11  1818- 1827   968.30  9.06E+002   71.33   1.86E+003  1.06E+002 
+   12  1842- 1850   981.28 -7.96E+001   51.64   1.29E+003  8.62E+001 
+   13  1962- 1971  1044.88  4.10E+001   54.97   1.33E+003  8.98E+001 
+   14  2103- 2115  1119.23  1.43E+003   78.28   1.79E+003  1.13E+002 
+   15  2507- 2517  1330.82  4.87E+002   47.55   7.47E+002  6.93E+001 
+   16  2749- 2762  1458.97  1.55E+004  131.48   6.67E+002  7.04E+001 
+   17  3324- 3339  1761.99  1.37E+003   45.66   2.38E+002  4.40E+001 
+
+M = First peak in a multiplet region
+m = Other peak in a multiplet region
+F = Fitted singlet
+
+Errors quoted at  1.000 sigma
+Peak with NID Report             2017-5-7   15:59:01               Page 16
+
+
+**************************************************************************
+*****           P E A K    W I T H   N I D    R E P O R T            *****
+**************************************************************************
+
+
+     Detector Name:                                  
+     Sample Title:   GENIE-PC Background File No. 1                    
+     Peak Analysis Performed on:  2017-5-7   15:59:01   
+               Peak Analysis From Channel:      1
+               Peak Analysis To Channel:     4096
+     Tentative NID Library:   C:\GENIE2K\CAMFILES\STDLIB.NLB           
+     Peak Match Tolerance :    0.000 keV
+
+   Peak  ROI  ROI    Peak    Energy   Net Peak Net Area  Continuum  Tentative
+    No. Start End  Centroid   (keV)     Area    Uncert.    Counts    Nuclide 
+
+    1   434-  438   436.21   239.70  5.62E+003  149.62   1.03E+004   .....    
+    2   440-  444   442.55   243.03 -1.05E+003  136.14   1.21E+004   XE-125   
+                                                                     XE-138   
+    3   541-  546   543.65   296.17  3.89E+003  126.63   6.94E+003   PB-214   
+    4   622-  627   625.17   339.02  1.32E+003  102.96   5.30E+003   AC-228   
+    5   648-  654   651.34   352.78  6.60E+003  129.42   5.42E+003   PB-214   
+    6   949-  956   952.60   511.14  2.74E+003   99.04   3.54E+003   .....    
+    7  1086- 1094  1090.23   583.48  3.11E+003   96.42   2.91E+003   .....    
+    8  1135- 1143  1139.82   609.55  6.17E+003  108.82   2.67E+003   BI-214   
+                                                                     RU-103   
+    9  1437- 1446  1442.00   768.39  4.24E+002   72.34   2.14E+003   BI-214   
+   10  1707- 1717  1712.66   910.66  2.32E+003   80.42   1.75E+003   AC-228   
+   11  1818- 1827  1822.31   968.30  9.06E+002   71.33   1.86E+003   SB-124   
+                                                                     AC-228   
+   12  1842- 1850  1847.00   981.28 -7.96E+001   51.64   1.29E+003   .....    
+   13  1962- 1971  1968.00  1044.88  4.10E+001   54.97   1.33E+003   SB-124   
+                                                                     BR-82    
+   14  2103- 2115  2109.45  1119.23  1.43E+003   78.28   1.79E+003   .....    
+   15  2507- 2517  2511.97  1330.82  4.87E+002   47.55   7.47E+002   .....    
+   16  2749- 2762  2755.77  1458.97  1.55E+004  131.48   6.67E+002   .....    
+   17  3324- 3339  3332.23  1761.99  1.37E+003   45.66   2.38E+002   .....    
+
+M = First peak in a multiplet region
+m = Other peak in a multiplet region
+F = Fitted singlet
+
+Errors quoted at  1.000 sigma
+Peak Efficiency Report             2017-5-7   15:59:01             Page 17
+
+
+**************************************************************************
+*****         P E A K    E F F I C I E N C Y    R E P O R T          *****
+**************************************************************************
+
+     Detector Name:                                  
+     Sample Title:   GENIE-PC Background File No. 1                    
+     Peak Analysis Performed on:  2017-5-7   15:59:01   
+
+
+ Peak  Energy   Net Peak  Net Area       Peak     Efficiency
+ No.   (keV)      Area   Uncertainty  Efficiency  Uncertainty
+
+    1   239.70  5.62E+003   149.62     0.00E+000    0.00E+000
+    2   243.03 -1.05E+003   136.14     0.00E+000    0.00E+000
+    3   296.17  3.89E+003   126.63     0.00E+000    0.00E+000
+    4   339.02  1.32E+003   102.96     0.00E+000    0.00E+000
+    5   352.78  6.60E+003   129.42     0.00E+000    0.00E+000
+    6   511.14  2.74E+003    99.04     0.00E+000    0.00E+000
+    7   583.48  3.11E+003    96.42     0.00E+000    0.00E+000
+    8   609.55  6.17E+003   108.82     0.00E+000    0.00E+000
+    9   768.39  4.24E+002    72.34     0.00E+000    0.00E+000
+   10   910.66  2.32E+003    80.42     0.00E+000    0.00E+000
+   11   968.30  9.06E+002    71.33     0.00E+000    0.00E+000
+   12   981.28 -7.96E+001    51.64     0.00E+000    0.00E+000
+   13  1044.88  4.10E+001    54.97     0.00E+000    0.00E+000
+   14  1119.23  1.43E+003    78.28     0.00E+000    0.00E+000
+   15  1330.82  4.87E+002    47.55     0.00E+000    0.00E+000
+   16  1458.97  1.55E+004   131.48     0.00E+000    0.00E+000
+   17  1761.99  1.37E+003    45.66     0.00E+000    0.00E+000
+
+
+M = First peak in a multiplet region
+m = Other peak in a multiplet region
+F = Fitted singlet
+
+Errors quoted at  1.000 sigma
+Background Subtract Report             2017-5-7   15:59:01         Page 18
+
+No background subtract performed on this spectrum.
+No area correction performed on this spectrum.
+Nuclide Identification Report        2017-5-7   15:59:01           Page 19
+
+
+No nuclide identification results available for reporting purposes
+Interference Corrected Activity Report    2017-5-7   15:59:01      Page 20
+
+
+No nuclide identification results available for reporting purposes
+Nuclide MDA Report                      2017-5-7   15:59:01        Page 21
+
+
+No MDA analysis results available for reporting purposes
+Nuclide MDA Report                      2017-5-7   15:59:01        Page 22
+
+
+No MDA analysis results available for reporting purposes
+ISO11929 Report                      2017-5-7   15:59:01        Page 23
+
+
+No ISO11929 analysis results available for reporting purposes
+Action Level Summary Report             2017-5-7   15:59:01        Page 24
+
+
+No Action Level results available for reporting purposes
+
+*************************************************************************
+*****                 A U T O  G A I N   A D J U S T                *****
+*************************************************************************
+
+Report Generated On:                               2017-5-7   15:59:01   
+
+
+No AGA results for reporting.
+Status:                                                                 
+
+
+This report is valid only if a Certificate was the source of the true values.
+
+
+No AGA results for reporting.
+Status:                                                                 
+

@@ -383,7 +383,7 @@ namespace WpfGS
          }
          #endregion
 
-
+         public static string DetAddr = ".\\report";
      }
 
      public class ContainerPara
@@ -509,5 +509,5 @@ namespace WpfGS
          }
      }
 
-
+    
 }

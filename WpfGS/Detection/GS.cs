@@ -20,15 +20,18 @@ namespace WpfGS
     {
         public ModbusIpMaster Mot, Det;
         public MainView pMain;
+        public List<DetPara> listDet;
         public GSBase(TcpClient MotTcp, TcpClient DetTcp,MainView main)
         {
+            
             if (null == MotTcp) throw new Exception("电机未连接");
             Mot = ModbusIpMaster.CreateIp(MotTcp);
 
             if (null == DetTcp) throw new Exception("探测器未连接");
             Det = ModbusIpMaster.CreateIp(DetTcp);
-
+            
             pMain = main;
+            listDet = new List<DetPara>();
 
         }
         
@@ -99,6 +102,101 @@ namespace WpfGS
 
 
         }
+
+
+        public void addDet(double Angle, double dY, double Height, string filename)
+        {
+            DetPara det = new DetPara();
+            det.Angle = Angle;
+            det.dY = dY;
+            det.Height = Height;
+
+            string Path = Settings.DetAddr + "\\" + filename;
+            StreamReader sr = new StreamReader(Path);
+            string line;
+            do
+            {
+                line = sr.ReadLine();
+            } while (line != "   Peak  ROI  ROI    Peak    Energy   Net Peak Net Area  Continuum  Tentative");
+            sr.ReadLine();
+            sr.ReadLine();
+
+            line = sr.ReadLine();
+            while (line != "")
+            {
+                string[] sArray = line.Split(' ');
+
+                int i = 0;
+                double ee = -1, cc = -1;
+                foreach (string str in sArray)
+                {
+                    if (str == "") continue;
+
+                    if (i == 4)
+                    {
+                        ee = double.Parse(str);
+                    }
+                    else if (i == 7)
+                    {
+                        cc = double.Parse(str);
+                    }
+                    i++;
+                }
+                line = sr.ReadLine();
+
+                if (ee != -1) det.dict[ee] = cc;
+
+            }
+            listDet.Add(det);
+        }
+
+        //save 
+        public void SaveFile(string path)
+        {
+            string fileNameExt = path.Substring(path.LastIndexOf("\\") + 1); //获取文件名，不带路径
+            //"_EmisDect.dat"  "_TransDect.dat"
+            //如果文件不存在，则创建；存在则覆盖 
+            File.Create(path).Close();
+            
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                string str;
+                sw.WriteLine("TITLE=\"" + fileNameExt + "\"");
+                str = "VARIABLES= \"Angle\" \"dY\" \"Height\" ";
+
+                Dictionary<double, double> dict=new Dictionary<double,double>();
+                foreach (DetPara det in listDet)
+                {
+                    foreach (double k in det.dict.Keys)
+                    {
+                        dict[k] = 1;
+                    }
+                }
+                foreach (double energy in dict.Keys)
+                {
+                    str += "\"" + energy + "\" ";
+                }
+                sw.WriteLine(str);
+
+                sw.WriteLine("ZONE T=\"3D Data\" I=1 J=1 K=9 F=POINT");
+
+                foreach (DetPara det in listDet)
+                {
+                    str = det.Angle.ToString("E8") + " ";
+                    str += det.dY.ToString("E8") + " ";
+                    str += det.Height.ToString("E8") + " ";
+
+                    
+                    foreach (double k in det.dict.Keys)
+                    {
+                        str += det.dict[k].ToString("E8") + " ";
+                    }
+                    sw.WriteLine(str);
+                }
+
+                sw.WriteLine("END");
+            }
+        }
         
 
 
@@ -148,14 +246,20 @@ namespace WpfGS
 
                 DetectorControl(ID,i,Time,Mode);
 
+                addDet(0, 0, (double)Height, ID + '_' + i + ".rpt");
+
             }
+
+
         }
+
+        
 
     }
 
-    class TSGS : GSBase
+    class STGS : GSBase
     {
-        public TSGS(TcpClient MotTcp, TcpClient DetTcp, MainView main)
+        public STGS(TcpClient MotTcp, TcpClient DetTcp, MainView main)
             :base(MotTcp,DetTcp,main)
         {
         }
@@ -166,6 +270,19 @@ namespace WpfGS
         public TGS(TcpClient MotTcp, TcpClient DetTcp, MainView main)
             :base(MotTcp,DetTcp,main)
         {
+        }
+    }
+
+    public class DetPara
+    {
+        public double Angle{get;set;}
+        public double dY { get; set; }
+        public double Height { get; set; }
+        public Dictionary<double, double> dict { get; set; }
+
+        public DetPara()
+        {
+            dict = new Dictionary<double, double>();
         }
     }
 }
