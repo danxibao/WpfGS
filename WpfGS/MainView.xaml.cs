@@ -94,7 +94,7 @@ namespace WpfGS
             return nodes;
         }
 
-        
+        //open one drum item in the treeview
         private void treeOpen_Click(object sender, RoutedEventArgs e)
         {
             if (treeview.SelectedItem != null)
@@ -574,6 +574,7 @@ namespace WpfGS
 
         private void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
+            //tab.IsEnabled = false;
             try
             {
                 if(true==r1.IsChecked){
@@ -585,8 +586,15 @@ namespace WpfGS
 
                     SGS sgs = new SGS(MotorTcp,DetectorTcp,this);
                     sgs.LayerDet(Start, Step, End, ID.Text);
-
+                    var n = treeview.SelectedItem as Node;
+                    sgs.SaveFile(n.fpath + "\\" + n.Name + "\\_EmisDect.dat");
                     /*
+                    MotorTcp = new TcpClient(MotorIP.Text, 502);
+                    ModbusIpMaster Mot= ModbusIpMaster.CreateIp(MotorTcp);
+
+                    ushort[]data={1,2,10};
+                    Mot.WriteMultipleRegisters(1, 0, data);
+                    
                     //test part
                     sgs.addDet(0, 0, 5, "TEST_BKG.rpt");
                     sgs.addDet(0, 0, 10, "TEST_BKG_1.rpt");
@@ -609,8 +617,9 @@ namespace WpfGS
 
             } catch(Exception ex){
                 System.Windows.MessageBox.Show(ex.Message);
+                
             }
-
+            //tab.IsEnabled = true;
 
         }
 

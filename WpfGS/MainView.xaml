@@ -85,7 +85,7 @@
                         <TextBlock HorizontalAlignment="Left" Margin="15,262,0,0" TextWrapping="Wrap" 
                                    Text="进行透射测量" VerticalAlignment="Top"/>
                         <CheckBox Name="isTM"
-                            Margin="102,262,425,173" IsChecked="True"/>
+                            Margin="102,262,425,173" IsChecked="false"/>
                         <TextBlock HorizontalAlignment="Left" Margin="137,262,0,0" TextWrapping="Wrap" 
                         	Text="选择透射校正文件" VerticalAlignment="Top"/>
                         <TextBox x:Name="transmissionFile"

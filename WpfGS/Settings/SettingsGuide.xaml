@@ -30,7 +30,7 @@
                                               x:Name="UCcs"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="定义透射校核标准源">
+            <TabItem Header="定义透射校正标准源">
                 <Grid>
                     <local:TransmissionSource HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
                                                x:Name="UCts"/>

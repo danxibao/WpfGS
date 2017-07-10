@@ -76,7 +76,7 @@
         <Button Content="添加行" HorizontalAlignment="Left" Margin="520,451,0,0" VerticalAlignment="Top" Width="61"
         	Click="ButtonAdd2_Click"/>
             
-            <Button Content="实验测定" HorizontalAlignment="Left" Margin="626,280,0,0" VerticalAlignment="Top" Width="61" 
+            <Button Content="实验测量" HorizontalAlignment="Left" Margin="626,280,0,0" VerticalAlignment="Top" Width="61" 
                 Click="ButtonTest_Click"/>
             <Button Content="来自文件" HorizontalAlignment="Left" Margin="626,304,0,0" VerticalAlignment="Top" Width="61"
                 Click="AddFile_Click"/>
