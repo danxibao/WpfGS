@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:WpfGS"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="CalibrationMeasure" Height="561" Width="512">
     <Window.Resources>
         <local:RegImageConverter x:Key="RegImageConverter"/>
@@ -14,15 +15,15 @@
                 <TabItem Header="设置">
                     <Grid >
                         <TextBlock HorizontalAlignment="Left" Margin="17,35,0,0" TextWrapping="Wrap" Text="描述" VerticalAlignment="Top"/>
-                        <DatePicker Text="{Binding datetime}"
+                        <DatePicker Text="{Binding datetime}" SelectedDate="{x:Static sys:DateTime.Now}"
             HorizontalAlignment="Left" Margin="92,86,0,0" VerticalAlignment="Top" Width="200" SelectedDateFormat="Short"/>
                         <TextBlock HorizontalAlignment="Left" Margin="17,115,0,0" TextWrapping="Wrap" Text="选择容器" VerticalAlignment="Top"/>
                         <ComboBox HorizontalAlignment="Left" Margin="92,115,0,0" VerticalAlignment="Top" Width="200"
-                              Name="drum" />
+                              Name="drum" SelectedIndex="0"/>
 
                         <TextBlock HorizontalAlignment="Left" Margin="17,141,0,0" TextWrapping="Wrap" Text="选择标准源" VerticalAlignment="Top"/>
                         <ComboBox HorizontalAlignment="Left" Margin="92,141,0,0" VerticalAlignment="Top" Width="200"
-                              Name="source" />
+                              Name="source" SelectedIndex="0"/>
 
                         <TextBlock HorizontalAlignment="Left" Margin="19,10,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top"/>
                         <TextBlock HorizontalAlignment="Left" Margin="17,86,0,0" TextWrapping="Wrap" Text="测量时间" VerticalAlignment="Top"/>
@@ -33,7 +34,7 @@
 
                         <TextBlock HorizontalAlignment="Left" Margin="17,167,0,0" TextWrapping="Wrap" Text="选择探测器" VerticalAlignment="Top"/>
                         <ComboBox HorizontalAlignment="Left" Margin="92,167,0,0" VerticalAlignment="Top" Width="200"
-                        	x:Name="detector" />
+                        	x:Name="detector" SelectedIndex="0"/>
                         <GroupBox HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Height="122" Width="217">
                             <GroupBox.Header>
                                 <RadioButton Content="单点测量" HorizontalAlignment="Left"  VerticalAlignment="Top" 
@@ -41,7 +42,7 @@
                             </GroupBox.Header>
                             <Grid IsEnabled="{Binding IsChecked}" DataContext="{Binding r1}">
                                 <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Text="密度" VerticalAlignment="Top" Margin="10,12,0,0"/>
-                                <TextBox x:Name="Density"
+                                <TextBox x:Name="Density" 
                         HorizontalAlignment="Left" Height="23" Margin="74,12,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" Text="横向偏移" VerticalAlignment="Top"/>
 

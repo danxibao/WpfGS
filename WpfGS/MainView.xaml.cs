@@ -345,7 +345,7 @@ namespace WpfGS
             }
 
             treeview.ItemsSource = Bind(theFolder);
-
+            
         }
 
         void drumCreate(string folderpath)
