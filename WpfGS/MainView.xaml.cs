@@ -558,8 +558,6 @@ namespace WpfGS
                 else MotorTcp.Connect(MotorIP.Text, 502);
                 Circle2.Fill = new SolidColorBrush(Colors.Green);
 
-
-
             }
             catch (Exception ex)
             {
@@ -567,6 +565,7 @@ namespace WpfGS
             }
         }
 
+        
         private async void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
             string str=detect.Content.ToString();
@@ -585,17 +584,18 @@ namespace WpfGS
                         ProgressBar1.Value = Start;
                         var n = treeview.SelectedItem as Node;
                         
-                        await Task.Run(() =>
+                        Task t = new Task(() => 
                         {
 
                             SGS sgs = new SGS(MotorTcp, DetectorTcp, this);
                             sgs.LayerDet(Start, Step, End, ID_str);
 
                             sgs.SaveFile(n.fpath + "\\" + n.Name + "\\_EmisDect.dat");
-                            
-                        });
-                        
 
+                        });
+                        t.Start();
+                        await t;
+                        
                     }
                     else if (true == r2.IsChecked)
                     {
