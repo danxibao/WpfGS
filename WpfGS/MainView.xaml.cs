@@ -565,7 +565,9 @@ namespace WpfGS
             }
         }
 
-        
+        Task t;
+        CancellationTokenSource cts;
+        public CancellationToken ct;
         private async void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
             string str=detect.Content.ToString();
@@ -583,8 +585,11 @@ namespace WpfGS
                         ProgressBar1.Maximum = End;
                         ProgressBar1.Value = Start;
                         var n = treeview.SelectedItem as Node;
-                        
-                        Task t = new Task(() => 
+
+                        //“取消标记”ct=CancellationTokenSource.Token
+                        cts = new CancellationTokenSource();
+                        ct = cts.Token;
+                        t = new Task(() => 
                         {
 
                             SGS sgs = new SGS(MotorTcp, DetectorTcp, this);
@@ -592,7 +597,7 @@ namespace WpfGS
 
                             sgs.SaveFile(n.fpath + "\\" + n.Name + "\\_EmisDect.dat");
 
-                        });
+                        },ct);
                         t.Start();
                         await t;
                         
@@ -619,7 +624,8 @@ namespace WpfGS
             }
             else
             {
-
+                cts.Cancel();
+                detect.Content = "开始测量";
             }
             
 

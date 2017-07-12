@@ -61,6 +61,8 @@ namespace WpfGS
             ushort[] receive;
             do
             {
+                pMain.ct.ThrowIfCancellationRequested();
+
                 Thread.Sleep(1000);
                 receive = Mot.ReadHoldingRegisters(1, 0, 10);
                 if (receive[6] != 0) throw new Exception("电机报警");
@@ -82,6 +84,8 @@ namespace WpfGS
             bool[] b;
             do
             {
+                pMain.ct.ThrowIfCancellationRequested();
+
                 Thread.Sleep(1000);
                 b = Det.ReadCoils(1, 0, 3);
                 if (b[2]) throw new Exception("探测器报警");
