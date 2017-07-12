@@ -209,7 +209,8 @@
                             HorizontalAlignment="Center" Height="20"  Grid.Row="3" VerticalAlignment="Center" Width="500" Margin="24,0,24,30"/>
                         <TextBlock Name="Notice"
                             HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="25" Width="500" />
-                        <Button Content="开始测量" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Width="200" FontSize="18" Height="32" 
+                        <Button Name="detect"
+                            Content="开始测量" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Width="200" FontSize="18" Height="32" 
                                 Click="ButtonStart_Click"/>
 
                     </Grid>

@@ -113,13 +113,8 @@ namespace WpfGS
                             ReportLoad(n.fpath + "\\" + n.Name + "\\#DetectionReport.txt");
                             break;
                     }
-                        
-                    
-
                 }
             }
-            
-
         }
         void ItemLoad(string path)
         {
@@ -572,54 +567,61 @@ namespace WpfGS
             }
         }
 
-        private void ButtonStart_Click(object sender, RoutedEventArgs e)
+        private async void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
-            //tab.IsEnabled = false;
-            try
-            {
-                if(true==r1.IsChecked){
-                    int Start = int.Parse(startpos.Text), Step = int.Parse(step.Text), End = int.Parse(stoppos.Text);
-                    ProgressBar1.Minimum = Start;
-                    ProgressBar1.Maximum = End;
-                    ProgressBar1.Value = Start;
-                    
-
-                    SGS sgs = new SGS(MotorTcp,DetectorTcp,this);
-                    sgs.LayerDet(Start, Step, End, ID.Text);
-                    var n = treeview.SelectedItem as Node;
-                    sgs.SaveFile(n.fpath + "\\" + n.Name + "\\_EmisDect.dat");
-                    /*
-                    MotorTcp = new TcpClient(MotorIP.Text, 502);
-                    ModbusIpMaster Mot= ModbusIpMaster.CreateIp(MotorTcp);
-
-                    ushort[]data={1,2,10};
-                    Mot.WriteMultipleRegisters(1, 0, data);
-                    
-                    //test part
-                    sgs.addDet(0, 0, 5, "TEST_BKG.rpt");
-                    sgs.addDet(0, 0, 10, "TEST_BKG_1.rpt");
-                    var n = treeview.SelectedItem as Node;
-                    sgs.SaveFile(n.fpath + "\\" + n.Name + "\\_EmisDect.dat");
-                    */
-                    
-                }
-                else if (true == r2.IsChecked)
+            string str=detect.Content.ToString();
+            if(str=="开始测量"){
+                try
                 {
+                    detect.Content = "停止测量";
+                    if (true == r1.IsChecked)
+                    {
+                        string ID_str = ID.Text;
+                        int Start = int.Parse(startpos.Text),
+                            Step = int.Parse(step.Text),
+                            End = int.Parse(stoppos.Text);
+                        ProgressBar1.Minimum = Start;
+                        ProgressBar1.Maximum = End;
+                        ProgressBar1.Value = Start;
+                        var n = treeview.SelectedItem as Node;
+                        
+                        await Task.Run(() =>
+                        {
 
-                }
-                else if (true == r3.IsChecked)
-                {
+                            SGS sgs = new SGS(MotorTcp, DetectorTcp, this);
+                            sgs.LayerDet(Start, Step, End, ID_str);
 
-                }
+                            sgs.SaveFile(n.fpath + "\\" + n.Name + "\\_EmisDect.dat");
+                            
+                        });
+                        
 
-                System.Windows.MessageBox.Show("探测完成");
+                    }
+                    else if (true == r2.IsChecked)
+                    {
 
+                    }
+                    else if (true == r3.IsChecked)
+                    {
 
-            } catch(Exception ex){
-                System.Windows.MessageBox.Show(ex.Message);
+                    }
                 
+                
+
+                    System.Windows.MessageBox.Show("探测完成");
+                    detect.Content = "开始测量";
+
+                } catch(Exception ex){
+                    System.Windows.MessageBox.Show(ex.Message);
+                
+                }
+            
             }
-            //tab.IsEnabled = true;
+            else
+            {
+
+            }
+            
 
         }
 
@@ -633,12 +635,13 @@ namespace WpfGS
             //  to the ProgressBar's SetValue method.
             UpdateProgressBarDelegate updatePbDelegate = new UpdateProgressBarDelegate(ProgressBar1.SetValue);
 
-
-            Notice.Text = "正在测量第" +
+            //解决主线程控件无法被子线程控制的问题，调用线程无法访问此对象，因为另一个线程拥有该对象
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                Notice.Text = "正在测量第" +
                     ((pb.Value - pb.Minimum) / Step + 1) + "/" +
                     ((pb.Maximum - pb.Minimum) / Step + 1) + "层";
 
-            
                 /*Update the Value of the ProgressBar:
           1)  Pass the "updatePbDelegate" delegate that points to the ProgressBar1.SetValue method
           2)  Set the DispatcherPriority to "Background"
@@ -649,7 +652,9 @@ namespace WpfGS
                 new object[] { System.Windows.Controls.ProgressBar.ValueProperty, (double)pb.Value });
 
                 pb.Value += Step;
-
+            }));
+            
+            
         }
 
         private void tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
