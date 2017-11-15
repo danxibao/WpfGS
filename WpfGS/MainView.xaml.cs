@@ -62,13 +62,13 @@ namespace WpfGS
             
 
             // Setting data for pie chart
-            valueList.Add(new KeyValuePair<string, int>("Developer", 60));
-            valueList.Add(new KeyValuePair<string, int>("Misc", 20));
-            valueList.Add(new KeyValuePair<string, int>("Tester", 50));
-            valueList.Add(new KeyValuePair<string, int>("QA", 30));
-            valueList.Add(new KeyValuePair<string, int>("Project Manager", 40));
+            valueList.Add(new KeyValuePair<string, int>("Ba-133", 60));
+            valueList.Add(new KeyValuePair<string, int>("Cs-137", 20));
+            valueList.Add(new KeyValuePair<string, int>("Co-60", 50));
+            valueList.Add(new KeyValuePair<string, int>("Eu-152", 30));
+            valueList.Add(new KeyValuePair<string, int>("Am-241", 40));
             pieChart.DataContext = valueList;
-
+            pieChart.Title = "核素分布饼图";
         }
 
         List<Node> Bind(DirectoryInfo TheFolder)
